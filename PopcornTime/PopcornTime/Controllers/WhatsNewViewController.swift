@@ -9,13 +9,14 @@ import UIKit
 
 class WhatsNewViewController: UIViewController {
     
-    
+    // configure the table
     private let table: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
     
+    //add the table to the view
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -46,6 +47,7 @@ class WhatsNewViewController: UIViewController {
 
 }
 
+//MARK: - DELEGATE METHODS
 extension WhatsNewViewController: UITableViewDelegate, UITableViewDataSource{
 
      // set the numer of rows you wnat to see
@@ -57,7 +59,19 @@ extension WhatsNewViewController: UITableViewDelegate, UITableViewDataSource{
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
          cell.textLabel?.text = "Test"
-         return cell
-     }
+         cell.backgroundColor = .systemMint
+          return cell
+      }
 
- }
+      // set the cell height
+      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+          return 287
+      }
+
+      // set the header height
+      func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+          return 40
+      }
+
+
+  }
