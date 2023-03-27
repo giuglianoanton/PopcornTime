@@ -52,7 +52,7 @@ extension WhatsNewViewController: UITableViewDelegate, UITableViewDataSource{
     
     // set the numer of rows you wnat to see
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return 1
     }
     
     // set the number of cell per row you want to see
@@ -75,5 +75,9 @@ extension WhatsNewViewController: UITableViewDelegate, UITableViewDataSource{
         return 40
     }
     
-    
+    // set the number of section
+         func numberOfSections(in tableView: UITableView) -> Int {
+             return 5
+         }
+
 }
