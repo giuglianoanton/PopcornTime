@@ -31,6 +31,7 @@ class WhatsNewViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         table.frame = view.bounds
+        table.backgroundColor = .none
     }
     
     
