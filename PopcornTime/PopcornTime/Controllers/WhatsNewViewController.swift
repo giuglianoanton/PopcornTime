@@ -31,6 +31,10 @@ class WhatsNewViewController: UIViewController {
         
         table.delegate =  self
         table.dataSource = self
+        
+        DispatchQueue.main.async {
+            self.getRequest()
+        }
     }
     
     
@@ -49,6 +53,19 @@ class WhatsNewViewController: UIViewController {
         
     }
     
+    // call the api func
+    private func getRequest() {
+        ApiCaller.shared.getRequest { results in
+            switch results{
+            case .success(let moviesResponse):
+                print(moviesResponse)
+//                movies.append(moviesResponse[0])
+//                print(movies)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
     /*
      // MARK: - Navigation
