@@ -41,6 +41,8 @@ class CollectionViewTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         collectionView.frame = contentView.bounds
+        
+//        collectionView.showsHorizontalScrollIndicator = false
     }
     /*
      override func awakeFromNib() {

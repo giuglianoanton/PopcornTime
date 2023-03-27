@@ -14,6 +14,7 @@
 		A97C15F129D1E46F008F014B /* WhatsNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C15F029D1E46F008F014B /* WhatsNewViewController.swift */; };
 		A97C15F329D1E48C008F014B /* MyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C15F229D1E48C008F014B /* MyListViewController.swift */; };
 		A97C15F629D1E8BC008F014B /* CollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C15F529D1E8BC008F014B /* CollectionViewTableViewCell.swift */; };
+		A97C15F929D1EDE2008F014B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C15F829D1EDE2008F014B /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		A97C15F029D1E46F008F014B /* WhatsNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewViewController.swift; sourceTree = "<group>"; };
 		A97C15F229D1E48C008F014B /* MyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewController.swift; sourceTree = "<group>"; };
 		A97C15F529D1E8BC008F014B /* CollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTableViewCell.swift; sourceTree = "<group>"; };
+		A97C15F829D1EDE2008F014B /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				A97C15F429D1E897008F014B /* Views */,
 				A97C15EF29D1E459008F014B /* Controllers */,
 				A97C15DD29D1DF18008F014B /* SceneDelegate.swift */,
+				A97C15F829D1EDE2008F014B /* Data.swift */,
 				A97C15DF29D1DF18008F014B /* TabBarViewController.swift */,
 				A97C15E429D1DF19008F014B /* Assets.xcassets */,
 				A97C15E629D1DF19008F014B /* LaunchScreen.storyboard */,
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A97C15F929D1EDE2008F014B /* Data.swift in Sources */,
 				A97C15E029D1DF18008F014B /* TabBarViewController.swift in Sources */,
 				A97C15DC29D1DF18008F014B /* AppDelegate.swift in Sources */,
 				A97C15F629D1E8BC008F014B /* CollectionViewTableViewCell.swift in Sources */,

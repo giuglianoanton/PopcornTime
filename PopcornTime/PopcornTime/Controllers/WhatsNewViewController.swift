@@ -10,8 +10,8 @@ import UIKit
 class WhatsNewViewController: UIViewController {
     
     // create searchbar
-         let searchController = UISearchController()
-
+    let searchController = UISearchController()
+    
     
     // configure the table
     private let table: UITableView = {
@@ -42,12 +42,12 @@ class WhatsNewViewController: UIViewController {
     }
     
     private func configureNavBar(){
-             // navigation configuration
-             self.title = "What's New"
-             navigationItem.searchController = searchController
-             navigationItem.hidesSearchBarWhenScrolling = false
-
-         }
+        // navigation configuration
+        self.title = "What's New"
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        
+    }
     
     
     /*
@@ -73,12 +73,12 @@ extension WhatsNewViewController: UITableViewDelegate, UITableViewDataSource{
     // set the number of cell per row you want to see
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell()
-
-                 }
-         //        cell.textLabel?.text = "Test"
-         //        cell.backgroundColor = .systemMint
-                 return cell
-             }
+            
+        }
+        //        cell.textLabel?.text = "Test"
+        //        cell.backgroundColor = .systemMint
+        return cell
+    }
     
     // set the cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -91,8 +91,20 @@ extension WhatsNewViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     // set the number of section
-         func numberOfSections(in tableView: UITableView) -> Int {
-             return 5
-         }
-
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionsTitles.count
+    }
+    
+    // set the title of the section
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionsTitles[section]
+    }
+    
+    // set the view for the header
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let  header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        header.textLabel?.frame = CGRect(x: header.bounds.origin.x, y: header.bounds.origin.y , width: header.bounds.width, height: header.bounds.height)
+        header.textLabel?.textColor = .secondaryLabel
+    }
 }
