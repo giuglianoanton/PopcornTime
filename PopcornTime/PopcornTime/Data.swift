@@ -13,7 +13,10 @@ let sectionsTitles = ["Most Popular", "In Theatres", "On Netflix", "On Prime", "
 // searching keys
 let searchingKeys = [
     "3/trending/all/week",
-    "3/trending/all/day"
+    "3/trending/all/day",
+    "3/movie/upcoming",
+    "3/movie/popular",
+    "3/movie/top_rated",
 ]
 
 

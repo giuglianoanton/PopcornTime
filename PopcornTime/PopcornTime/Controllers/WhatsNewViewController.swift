@@ -58,8 +58,8 @@ class WhatsNewViewController: UIViewController {
         ApiCaller.shared.getRequest { results in
             switch results{
             case .success(let moviesResponse):
-                print(moviesResponse)
-//                movies.append(moviesResponse[0])
+//                print(moviesResponse)
+                movies.append(moviesResponse[0])
 //                print(movies)
             case .failure(let error):
                 print(error)

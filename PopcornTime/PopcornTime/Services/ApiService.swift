@@ -24,7 +24,7 @@ class ApiCaller{
     static let shared = ApiCaller()
     
     
-    func getRequest(searchKey: String = searchingKeys[1], completion: @escaping (Result<[Media], Error>) -> Void){
+    func getRequest(searchKey: String = searchingKeys[4], completion: @escaping (Result<[Media], Error>) -> Void){
         // url to send request
         guard let url = URL(string: "\(baseUrl)\(searchKey)?api_key=\(key)") else {return}
 
