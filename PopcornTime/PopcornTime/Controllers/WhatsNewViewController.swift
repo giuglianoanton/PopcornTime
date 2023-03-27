@@ -9,6 +9,10 @@ import UIKit
 
 class WhatsNewViewController: UIViewController {
     
+    // create searchbar
+         let searchController = UISearchController()
+
+    
     // configure the table
     private let table: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
@@ -19,6 +23,9 @@ class WhatsNewViewController: UIViewController {
     //add the table to the view
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureNavBar()
+        
         view.backgroundColor = .systemBackground
         view.addSubview(table)
         
@@ -34,6 +41,13 @@ class WhatsNewViewController: UIViewController {
         table.backgroundColor = .none
     }
     
+    private func configureNavBar(){
+             // navigation configuration
+             self.title = "What's New"
+             navigationItem.searchController = searchController
+             navigationItem.hidesSearchBarWhenScrolling = false
+
+         }
     
     
     /*
