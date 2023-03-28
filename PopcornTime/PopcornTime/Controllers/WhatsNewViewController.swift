@@ -116,7 +116,7 @@ extension WhatsNewViewController: UITableViewDelegate, UITableViewDataSource{
     
     // set the cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 287
+        return 300
     }
     
     // set the header height
