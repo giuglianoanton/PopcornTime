@@ -24,7 +24,7 @@ class ApiCaller{
     static let shared = ApiCaller()
     
     
-    func getRequest(searchKey: String = searchingKeys[4], completion: @escaping (Result<[Media], Error>) -> Void){
+    func getRequest(searchKey: String, completion: @escaping (Result<[Media], Error>) -> Void){
         // url to send request
         guard let url = URL(string: "\(baseUrl)\(searchKey)?api_key=\(key)") else {return}
 
@@ -40,7 +40,7 @@ class ApiCaller{
             do{
                 let responseResults = try JSONDecoder().decode(Results.self, from: data)
                 completion(.success(responseResults.results))
-                print(responseResults)
+//                print(responseResults)
             }catch{
                 completion(.failure(error))
                 print(error.localizedDescription)

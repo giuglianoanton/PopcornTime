@@ -32,9 +32,9 @@ class WhatsNewViewController: UIViewController {
         table.delegate =  self
         table.dataSource = self
         
-        DispatchQueue.main.async {
-            self.getRequest()
-        }
+//        DispatchQueue.main.async {
+//            self.getRequest()
+//        }
     }
     
     
@@ -53,19 +53,19 @@ class WhatsNewViewController: UIViewController {
         
     }
     
-    // call the api func
-    private func getRequest() {
-        ApiCaller.shared.getRequest { results in
-            switch results{
-            case .success(let moviesResponse):
-//                print(moviesResponse)
-                movies.append(moviesResponse[0])
-//                print(movies)
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
+//    // call the api func
+//    private func getRequest() {
+//        ApiCaller.shared.getRequest { results in
+//            switch results{
+//            case .success(let moviesResponse):
+////                print(moviesResponse)
+//                movies.append(moviesResponse[0])
+////                print(movies)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//    }
     
     /*
      // MARK: - Navigation
@@ -92,6 +92,23 @@ extension WhatsNewViewController: UITableViewDelegate, UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell()
             
         }
+        
+        // switch the case of the section to understand what get request to do
+        switch indexPath.section{
+        case Sections.TrendingToday.rawValue:
+            getRequestForSection(searchKey: searchingKeys[Sections.TrendingToday.rawValue], cell: cell)
+        case Sections.TrendingThisWeek.rawValue:
+            getRequestForSection(searchKey: searchingKeys[Sections.TrendingThisWeek.rawValue], cell: cell)
+        case Sections.Popular.rawValue:
+            getRequestForSection(searchKey: searchingKeys[Sections.Popular.rawValue], cell: cell)
+        case Sections.Upcoming.rawValue:
+            getRequestForSection(searchKey: searchingKeys[Sections.Upcoming.rawValue], cell: cell)
+       case Sections.TopRated.rawValue:
+            getRequestForSection(searchKey: searchingKeys[Sections.TopRated.rawValue], cell: cell)
+        default:
+            return UITableViewCell()
+        }
+        
         //        cell.textLabel?.text = "Test"
         //        cell.backgroundColor = .systemMint
         return cell

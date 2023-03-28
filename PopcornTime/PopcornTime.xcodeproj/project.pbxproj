@@ -20,6 +20,7 @@
 		A97C160129D22EE7008F014B /* MediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C160029D22EE7008F014B /* MediaCollectionViewCell.swift */; };
 		A97C160629D23674008F014B /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A97C160529D23674008F014B /* SDWebImage */; };
 		A97C160829D23674008F014B /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A97C160729D23674008F014B /* SDWebImageMapKit */; };
+		A97C160A29D23FD5008F014B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C160929D23FD5008F014B /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		A97C15FB29D1EED6008F014B /* MediaResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaResponseModel.swift; sourceTree = "<group>"; };
 		A97C15FE29D1EF37008F014B /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		A97C160029D22EE7008F014B /* MediaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionViewCell.swift; sourceTree = "<group>"; };
+		A97C160929D23FD5008F014B /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				A97C15EF29D1E459008F014B /* Controllers */,
 				A97C15DD29D1DF18008F014B /* SceneDelegate.swift */,
 				A97C15F829D1EDE2008F014B /* Data.swift */,
+				A97C160929D23FD5008F014B /* Helpers.swift */,
 				A97C15E429D1DF19008F014B /* Assets.xcassets */,
 				A97C15FD29D1EF10008F014B /* Services */,
 				A97C15E629D1DF19008F014B /* LaunchScreen.storyboard */,
@@ -200,6 +203,7 @@
 				A97C15E029D1DF18008F014B /* TabBarViewController.swift in Sources */,
 				A97C15DC29D1DF18008F014B /* AppDelegate.swift in Sources */,
 				A97C15FC29D1EED6008F014B /* MediaResponseModel.swift in Sources */,
+				A97C160A29D23FD5008F014B /* Helpers.swift in Sources */,
 				A97C15F629D1E8BC008F014B /* CollectionViewTableViewCell.swift in Sources */,
 				A97C160129D22EE7008F014B /* MediaCollectionViewCell.swift in Sources */,
 				A97C15FF29D1EF37008F014B /* ApiService.swift in Sources */,

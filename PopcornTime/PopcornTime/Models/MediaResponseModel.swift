@@ -18,7 +18,7 @@ struct Media: Codable {
     let title: String?
     let original_language: String?
     let original_title: String?
-    let overview, poster_path: String
+    let overview, poster_path: String?
     let media_type: MediaType?
     let genre_ids: [Int]
     let popularity: Double

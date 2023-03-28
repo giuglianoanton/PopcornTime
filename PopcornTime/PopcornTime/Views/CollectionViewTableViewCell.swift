@@ -11,6 +11,8 @@ class CollectionViewTableViewCell: UITableViewCell {
     
     static let identifier = "CollectionViewTableViewCell"
     
+    var movies: [Media] = [Media]()
+    
     private let collectionView: UICollectionView = {
         
         // set the layout of the collection view
@@ -19,7 +21,7 @@ class CollectionViewTableViewCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        cv.register(MediaCollectionViewCell.self, forCellWithReuseIdentifier: MediaCollectionViewCell.identifier)
         
         return cv
     }()
@@ -42,8 +44,22 @@ class CollectionViewTableViewCell: UITableViewCell {
         super.layoutSubviews()
         collectionView.frame = contentView.bounds
         
-//        collectionView.showsHorizontalScrollIndicator = false
+            DispatchQueue.main.async {[weak self] in
+                self?.collectionView.reloadData()
+            }
+        
+        //        collectionView.showsHorizontalScrollIndicator = false
     }
+    
+    
+    
+//    public func configure(with movies: [Media]){
+//        self.movies = movies
+//        DispatchQueue.main.async {[weak self] in
+//            self?.collectionView.reloadData()
+//        }
+//    }
+    
     /*
      override func awakeFromNib() {
      super.awakeFromNib()
@@ -56,12 +72,21 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
     
     // set the cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MediaCollectionViewCell.identifier, for: indexPath) as? MediaCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        // call the configuration for the cache stuff
+        guard let movieModel = movies[indexPath.row].poster_path  else {
+            return UICollectionViewCell()
+        }
+        cell.configure(with: movieModel)
+        
         cell.backgroundColor = .systemMint
         return cell
     }
     // number of the cells
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return movies.count
     }
 }

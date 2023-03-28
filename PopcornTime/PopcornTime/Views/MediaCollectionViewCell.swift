@@ -18,6 +18,8 @@ class MediaCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         
         imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -37,7 +39,8 @@ class MediaCollectionViewCell: UICollectionViewCell {
     
     // set the poster in the cache
     public func configure(with poster: String) {
-        guard let url = URL(string: poster) else {return}
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(poster)") else {return}
+        print(url)
         posterImageView.sd_setImage(with: url, completed: nil)
     }
 }
