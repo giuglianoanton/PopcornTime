@@ -40,32 +40,19 @@ class MediaCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        self.layer.shadowOpacity = 0.18
-//        self.layer.shadowOffset = CGSize(width: 0, height: 4)
-//        self.layer.shadowRadius = 8
-//        self.layer.shadowColor = UIColor.black.cgColor
-//        //        self.layer.masksToBounds = true
-//        //        self.layer.cornerRadius = 12.5
-//        //        self.layer.maskedCorners = .layerMaxXMaxYCorner
+
         contentView.addSubview(overLayer)
         overLayer.addSubview(posterImageView)
-//                contentView.addSubview(posterImageView)
     }
     
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     //
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        //        posterImageView.layer.shadowOpacity = 0.6
-        //        posterImageView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        //        posterImageView.layer.shadowRadius = 8
-        //        posterImageView.layer.shadowColor = UIColor.black.cgColor
-        //
         overLayer.frame = contentView.bounds
-//                posterImageView.frame = contentView.bounds
     }
     
     // set the poster in the cache

@@ -51,18 +51,6 @@ class CollectionViewTableViewCell: UITableViewCell {
         super.layoutSubviews()
         collectionView.frame = contentView.bounds
         
-//        layer.shadowOpacity = 0.18
-//        layer.shadowOffset = CGSize(width: 0, height: 4)
-//        layer.shadowRadius = 8
-//        layer.shadowColor = UIColor.black.cgColor
-//        layer.masksToBounds = false
-//        overLayer.frame.size = CGSize(width: 166, height: 287)
-//        overLayer.frame = contentView.bounds
-//        overLayer.frame = CGRect(x: Int(overLayer.bounds.origin.x), y: Int(overLayer.bounds.origin.y), width: 166, height: 287)
-//        overLayer.backgroundColor = .systemRed
-//        overLayer.layer.cornerRadius = 12.5
-//        overLayer.layer.masksToBounds = true
-        
         DispatchQueue.main.async {[weak self] in
             self?.collectionView.reloadData()
         }
@@ -93,19 +81,11 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         guard let movieModel = movies[indexPath.row].poster_path  else {
             return UICollectionViewCell()
         }
-        
-        
         cell.configure(with: movieModel)
-//        cell.backgroundColor = .systemMint
-//        cell.layer.cornerRadius = 12.5
-//        cell.layer.shadowOpacity = 0.5
-//        cell.layer.shadowOffset = CGSize(width: 10, height: 10)
-//        cell.layer.shadowRadius = 2
-//        cell.layer.shadowColor = UIColor.black.cgColor
-//        cell.layer.masksToBounds = false
-        
+ 
         return cell
     }
+    
     // number of the cells
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
