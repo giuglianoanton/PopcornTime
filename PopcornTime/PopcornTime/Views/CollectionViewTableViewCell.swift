@@ -52,14 +52,6 @@ class CollectionViewTableViewCell: UITableViewCell {
     }
     
     
-    
-//    public func configure(with movies: [Media]){
-//        self.movies = movies
-//        DispatchQueue.main.async {[weak self] in
-//            self?.collectionView.reloadData()
-//        }
-//    }
-    
     /*
      override func awakeFromNib() {
      super.awakeFromNib()
@@ -81,12 +73,15 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
             return UICollectionViewCell()
         }
         cell.configure(with: movieModel)
-        
         cell.backgroundColor = .systemMint
+        cell.layer.cornerRadius = 12.5
+        cell.layer.masksToBounds = true
+
         return cell
     }
     // number of the cells
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
+   
 }
