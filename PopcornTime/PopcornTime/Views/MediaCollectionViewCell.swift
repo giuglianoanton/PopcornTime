@@ -35,7 +35,7 @@ class MediaCollectionViewCell: UICollectionViewCell {
         layer.layer.cornerRadius = 12.5
         layer.layer.shadowOffset = CGSize(width: 4, height: 4)
         layer.layer.shadowRadius = 3
-        layer.layer.shadowColor = UIColor.gray.cgColor
+        layer.layer.shadowColor = UIColor.black.cgColor
         layer.layer.shadowOpacity = 0.18
         
         return layer
@@ -81,6 +81,8 @@ class MediaCollectionViewCell: UICollectionViewCell {
         button.setImage(UIImage(systemName: "heart", withConfiguration: iconSize), for: .normal)
                 
         button.titleLabel?.tintColor = UIColor.tintColor
+        
+        button.addTarget(self, action: #selector(saveAsFavourite), for: .touchDown)
         return button
     }()
     
@@ -99,6 +101,7 @@ class MediaCollectionViewCell: UICollectionViewCell {
         mediaLabels.addSubview(year)
         heartButton.frame = CGRect(x: underLayer.bounds.origin.x + 105, y: underLayer.bounds.origin.y + 230, width: 75, height: 75)
         underLayer.addSubview(heartButton)
+        
         
     }
     
@@ -126,4 +129,15 @@ class MediaCollectionViewCell: UICollectionViewCell {
             year.text = String(release.prefix(4))
         }
     }
+    
+    // obj func to save and unsave using heart Button
+    @objc func saveAsFavourite(sender: UIButton!){
+        sender.isSelected.toggle()
+        if sender.isSelected{
+            print("saved")
+        } else{
+            print("unsaved")
+        }
+    }
 }
+
