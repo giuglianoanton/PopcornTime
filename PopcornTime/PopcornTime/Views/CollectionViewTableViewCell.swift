@@ -77,6 +77,7 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
             return UICollectionViewCell()
         }
         cell.configure(with: movieModel)
+        cell.configureLabels(with: movies[indexPath.row])
  
         return cell
     }
