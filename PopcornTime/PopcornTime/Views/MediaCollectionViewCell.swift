@@ -41,29 +41,47 @@ class MediaCollectionViewCell: UICollectionViewCell {
         return layer
     }()
     
-    //title, year
+    //set the view that contains the title and the year labels
     private let mediaLabels: UIView = {
         let mediaLabels = UIView()
         mediaLabels.frame = CGRect(x: mediaLabels.bounds.origin.x, y: mediaLabels.bounds.origin.y, width: 111, height: 32)
-        
+        return mediaLabels
+    }()
+    
+    // title
+    private let title: UILabel = {
         let title = UILabel()
         title.frame = CGRect(x: title.bounds.origin.x, y: title.bounds.origin.y, width: 111, height: 32)
         
         title.textAlignment = .justified
         title.text = "title".capitalized
         title.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.bold)
-        
-        mediaLabels.addSubview(title)
+        return title
+    }()
+    
+    //year
+    private let year: UILabel = {
         
         let year = UILabel()
-        year.frame = CGRect(x: year.bounds.origin.x, y: title.font.pointSize + 2, width: 111, height: 32)
         
         year.textAlignment = .justified
         year.text = "2023"
         year.font = UIFont.systemFont(ofSize: 8, weight: UIFont.Weight.semibold)
-        mediaLabels.addSubview(year)
         
-        return mediaLabels
+        return year
+    }()
+    
+    //heart button
+    private let heartButton: UIButton = {
+        let button = UIButton()
+        
+        let iconSize = UIImage.SymbolConfiguration(pointSize: 21, weight: .bold)
+        
+        button.setImage(UIImage(systemName: "heart.fill", withConfiguration: iconSize), for: .selected)
+        button.setImage(UIImage(systemName: "heart", withConfiguration: iconSize), for: .normal)
+                
+        button.titleLabel?.tintColor = UIColor.tintColor
+        return button
     }()
     
     
@@ -73,8 +91,14 @@ class MediaCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(underLayer)
         underLayer.addSubview(posterImageView)
-        mediaLabels.frame = CGRect(x: posterImageView.bounds.origin.x + 20, y: posterImageView.frame.height, width: 111, height: 30)
+        mediaLabels.frame = CGRect(x: underLayer.bounds.origin.x + 12, y: underLayer.bounds.origin.y + 243 , width: 111, height: 30)
         underLayer.addSubview(mediaLabels)
+        mediaLabels.addSubview(title)
+        year.frame = CGRect(x: year.bounds.origin.x, y: title.font.pointSize + 2, width: 111, height: 32)
+        
+        mediaLabels.addSubview(year)
+        heartButton.frame = CGRect(x: underLayer.bounds.origin.x + 105, y: underLayer.bounds.origin.y + 230, width: 75, height: 75)
+        underLayer.addSubview(heartButton)
         
     }
     
@@ -92,5 +116,14 @@ class MediaCollectionViewCell: UICollectionViewCell {
     public func configure(with poster: String) {
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(poster)") else {return}
         posterImageView.sd_setImage(with: url, completed: nil)
+    }
+    
+    // set the labels
+    public func configureLabels(with movie: Media) {
+        title.text = movie.title?.capitalized
+        if let release = movie.release_date{
+            // only want the year
+            year.text = String(release.prefix(4))
+        }
     }
 }
