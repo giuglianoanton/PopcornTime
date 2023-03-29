@@ -28,4 +28,4 @@ enum Sections: Int{
     case TopRated = 4
 }
 
-//var movies: [Media] = []
+var myMovies: [Media] = []
