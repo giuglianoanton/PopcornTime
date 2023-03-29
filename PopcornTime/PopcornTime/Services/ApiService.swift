@@ -26,7 +26,12 @@ class ApiCaller{
     
     func getRequest(searchKey: String, completion: @escaping (Result<[Media], Error>) -> Void){
         // url to send request
-        guard let url = URL(string: "\(baseUrl)\(searchKey)?api_key=\(key)") else {return}
+        var strURL = "\(baseUrl)\(searchKey)?api_key=\(key)"
+        if searchKey == searchingKeys[2] || searchKey == searchingKeys[3]{
+            strURL = "\(baseUrl)\(searchKey)?api_key=\(key)&language=en-US&page=1"
+        }
+        guard let url = URL(string: strURL) else {return}
+        print(strURL)
 
         // create the session
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {

@@ -17,7 +17,7 @@ class CollectionViewTableViewCell: UITableViewCell {
         
         // set the layout of the collection view
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 175, height: 291)
+        layout.itemSize = CGSize(width: 166, height: 291)
         layout.scrollDirection = .horizontal
         
         
@@ -27,16 +27,11 @@ class CollectionViewTableViewCell: UITableViewCell {
         return cv
     }()
     
-    private let overLayer: UIView = {
-        let overLayer = UIView()
-        return overLayer
-    }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .systemIndigo
         contentView.addSubview(collectionView)
-        contentView.addSubview(overLayer)
         
         collectionView.delegate = self
         collectionView.dataSource = self

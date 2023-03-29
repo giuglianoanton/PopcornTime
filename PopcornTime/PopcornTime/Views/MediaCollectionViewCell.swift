@@ -19,30 +19,63 @@ class MediaCollectionViewCell: UICollectionViewCell {
         
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.clipsToBounds = true
-        imageView.frame = CGRect(x: Int(imageView.bounds.origin.x), y: Int(imageView.bounds.origin.y), width: 166, height: 287)
-        imageView.layer.cornerRadius = 12.5
         
+        imageView.frame = CGRect(x: Int(imageView.bounds.origin.x), y: Int(imageView.bounds.origin.y), width: 166, height: 245)
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 12.5
+        imageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         return imageView
     }()
     
-    private let overLayer: UIView = {
-        let overLayer = UIView()
-        overLayer.frame = CGRect(x: Int(overLayer.bounds.origin.x), y: Int(overLayer.bounds.origin.y), width: 166, height: 287)
-        overLayer.layer.cornerRadius = 12.5
-        overLayer.layer.shadowOpacity = 0.18
-        overLayer.layer.shadowOffset = CGSize(width: 4, height: 4)
-        overLayer.layer.shadowRadius = 2.5
-        overLayer.layer.shadowColor = UIColor.black.cgColor
+    // the layer under the poster that contains the shadow
+    private let underLayer: UIView = {
+        let layer = UIView()
+        layer.frame = CGRect(x: Int(layer.bounds.origin.x), y: Int(layer.bounds.origin.y), width: 166, height: 287)
+        layer.backgroundColor = .white
+        layer.layer.cornerRadius = 12.5
+        layer.layer.shadowOffset = CGSize(width: 4, height: 4)
+        layer.layer.shadowRadius = 3
+        layer.layer.shadowColor = UIColor.gray.cgColor
+        layer.layer.shadowOpacity = 0.18
         
-        return overLayer
+        return layer
     }()
+    
+    //title, year
+    private let mediaLabels: UIView = {
+        let mediaLabels = UIView()
+        mediaLabels.frame = CGRect(x: mediaLabels.bounds.origin.x, y: mediaLabels.bounds.origin.y, width: 111, height: 32)
+        
+        let title = UILabel()
+        title.frame = CGRect(x: title.bounds.origin.x, y: title.bounds.origin.y, width: 111, height: 32)
+        
+        title.textAlignment = .justified
+        title.text = "title".capitalized
+        title.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.bold)
+        
+        mediaLabels.addSubview(title)
+        
+        let year = UILabel()
+        year.frame = CGRect(x: year.bounds.origin.x, y: title.font.pointSize + 2, width: 111, height: 32)
+        
+        year.textAlignment = .justified
+        year.text = "2023"
+        year.font = UIFont.systemFont(ofSize: 8, weight: UIFont.Weight.semibold)
+        mediaLabels.addSubview(year)
+        
+        return mediaLabels
+    }()
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        contentView.addSubview(overLayer)
-        overLayer.addSubview(posterImageView)
+        
+        contentView.addSubview(underLayer)
+        underLayer.addSubview(posterImageView)
+        mediaLabels.frame = CGRect(x: posterImageView.bounds.origin.x + 20, y: posterImageView.frame.height, width: 111, height: 30)
+        underLayer.addSubview(mediaLabels)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -52,7 +85,7 @@ class MediaCollectionViewCell: UICollectionViewCell {
     //
     override func layoutSubviews() {
         super.layoutSubviews()
-        overLayer.frame = contentView.bounds
+        underLayer.frame = contentView.bounds
     }
     
     // set the poster in the cache
