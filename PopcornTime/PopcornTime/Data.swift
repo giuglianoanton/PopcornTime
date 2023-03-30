@@ -29,3 +29,11 @@ enum Sections: Int{
 }
 
 var myMovies: [Media] = []
+
+//class MyList: ObservableObject {
+//    var myMovies: [Media]? {
+//        didSet{
+//            objectWillChange.send()
+//        }
+//    }
+//}

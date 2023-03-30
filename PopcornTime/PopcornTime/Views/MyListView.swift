@@ -11,19 +11,22 @@ struct MyListView: View {
     
     var body: some View {
 //        NavigationStack{
-        List{
-            ForEach(0...5, id: \.self){ item in
-                MyListCardView()
-                    
-            }.listRowSeparator(.hidden)
+        if !myMovies.isEmpty {
+            List{
+                ForEach(myMovies, id: \.id){ movie in
+                    MyListCardView(media: movie)
+                }
+                .listRowSeparator(.hidden)
                 .listRowBackground(Color.clear)
-              
+            }
+            .listStyle(.plain)
         }
+            
     }
 }
 
-struct MyListView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyListView()
-    }
-}
+//struct MyListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MyListView()
+//    }
+//}
