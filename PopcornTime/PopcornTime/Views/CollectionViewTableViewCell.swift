@@ -9,9 +9,11 @@ import UIKit
 
 class CollectionViewTableViewCell: UITableViewCell {
     
+    var movies: [Media] = []
+    
     static let identifier = "CollectionViewTableViewCell"
     
-    var movies: [Media] = [Media]()
+//    var movies: [Media] = [Media]()
     
     private let collectionView: UICollectionView = {
         
@@ -73,12 +75,19 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
             return UICollectionViewCell()
         }
         // call the configuration for the cache stuff
-        guard let movieModel = movies[indexPath.row].poster_path  else {
-            return UICollectionViewCell()
+//        guard let movieModel = movies[indexPath.row].poster_path  else {
+//            return UICollectionViewCell()
+//        }
+        let movieModel = movies[indexPath.row]
+        
+//        cell.configure(with: movieModel)
+//        cell.configureLabels(with: movies[indexPath.row])
+        if let poster = movies[indexPath.row].poster_path {
+            cell.configure(with: poster)
         }
-        cell.configure(with: movieModel)
         cell.configureLabels(with: movies[indexPath.row])
- 
+        cell.movie = movieModel
+        
         return cell
     }
     

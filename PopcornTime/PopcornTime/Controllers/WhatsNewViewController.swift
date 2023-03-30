@@ -9,6 +9,7 @@ import UIKit
 
 class WhatsNewViewController: UIViewController {
     
+   
     // create searchbar
     let searchController = UISearchController()
     
@@ -108,7 +109,6 @@ extension WhatsNewViewController: UITableViewDelegate, UITableViewDataSource{
         default:
             return UITableViewCell()
         }
-        
         //        cell.textLabel?.text = "Test"
         //        cell.backgroundColor = .systemMint
         return cell

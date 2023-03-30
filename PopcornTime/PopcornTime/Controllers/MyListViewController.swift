@@ -10,22 +10,29 @@ import SwiftUI
 
 class MyListViewController: UIViewController {
     
+    var myMovies: [Media] = []
+    
     var searchController = UISearchController()
     var container = UIView()
     
-    let myListView: UIHostingController = {
-        let myListView = UIHostingController(rootView: MyListView())
-        myListView.view.backgroundColor = .systemBackground
-        return myListView
-    }()
+//        let myListView: UIHostingController = {
+//            let myListView = UIHostingController(rootView: MyListView(myMovies: myMovies))
+//            myListView.view.backgroundColor = .systemBackground
+//            return myListView
+//        }()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureNavBar()
+        
+        let myListView = UIHostingController(rootView: MyListView())
+        myListView.view.backgroundColor = .systemBackground
+
         // Do any additional setup after loading the view.
-//        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemBackground
         
         container.frame = CGRect(x: container.bounds.origin.x, y: container.bounds.origin.y, width: view.frame.width, height: view.frame.height)
+        container.backgroundColor = .systemBackground
         view.addSubview(container)
         
         addChild(myListView)
@@ -44,15 +51,16 @@ class MyListViewController: UIViewController {
         
     }
     
-
+    
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -10,12 +10,16 @@ import SwiftUI
 
 class TabBarViewController: UITabBarController {
     
+    //myMovies List
+//    var myMovieList: MyList = MyList()
+    
     // create a navigation controller for each of the vcs
-      let whatsNew =  UINavigationController(rootViewController: WhatsNewViewController())
-      let myList =  UINavigationController(rootViewController: MyListViewController())
-//      let myList =  UIHostingController(rootView: MyListView())
-
-
+    var whatsNew =  UINavigationController(rootViewController: WhatsNewViewController())
+    let myList =  UINavigationController(rootViewController: MyListViewController())
+    //      let myList =  UIHostingController(rootView: MyListView())
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -32,10 +36,24 @@ class TabBarViewController: UITabBarController {
     }
     
     private func configureNavBar() {
-             whatsNew.navigationBar.prefersLargeTitles = true
-             myList.navigationBar.prefersLargeTitles = true
-         }
-
+        whatsNew.navigationBar.prefersLargeTitles = true
+        myList.navigationBar.prefersLargeTitles = true
+        
+        
+//        guard let myMovies = myMovieList.myMovies else {return}
+        
+        
+//        let vc1 = self.storyboard?.instantiateViewController(withIdentifier: "WhatsNewViewController") as! WhatsNewViewController
+//        let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "MyListViewController") as! MyListViewController
+//        
+//       
+//        
+//        vc1.myMovies = myMovies
+//        vc2.myMovies = myMovies
+        
+       
+    }
+    
     
 }
 
