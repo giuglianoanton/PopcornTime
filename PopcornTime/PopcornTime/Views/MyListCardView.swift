@@ -35,21 +35,28 @@ struct MyListCardView: View {
                         .font(.system(size: 16, weight: .bold))
                     Text(media.release_date ?? "Unknown")
                         .font(.system(size: 10, weight: .semibold))
-                    Spacer()
-                    Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+                    Text(media.overview ?? "Unknown")
                         .font(.system(size: 10, weight: .regular))
-                    
+                    Spacer()
                 }.frame(width: 166, height: 230)
             }.frame(width: 345, height: 245)
             
             Button(action: {
                 print("unsaved")
+                unfavourite(media: media)
             }, label: {
                 Image(systemName: "heart.fill")
                     .foregroundColor(.accentColor)
                     .font(.system(size: 20, weight: .bold))
                     .shadow(color:.black.opacity(0.18), radius: 3, x: 0, y:4)
             }).padding([.top])
+        }
+    }
+    func unfavourite(media: Media){
+        if let i = myMovies.firstIndex(where: {$0.id == media.id }){
+            print(myMovies.count)
+            myMovies.remove(at: i)
+            print(myMovies.count)
         }
     }
 }
