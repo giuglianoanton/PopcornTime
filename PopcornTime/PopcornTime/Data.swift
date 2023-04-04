@@ -28,12 +28,3 @@ enum Sections: Int{
     case TopRated = 4
 }
 
-var myMovies: [Media] = []
-
-//class MyList: ObservableObject {
-//    var myMovies: [Media]? {
-//        didSet{
-//            objectWillChange.send()
-//        }
-//    }
-//}

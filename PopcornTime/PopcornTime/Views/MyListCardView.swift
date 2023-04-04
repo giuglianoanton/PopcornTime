@@ -43,7 +43,7 @@ struct MyListCardView: View {
             
             Button(action: {
                 print("unsaved")
-                unfavourite(media: media)
+                MoviesSingleton.sharedInstance.didTapHeart(movie: media)
             }, label: {
                 Image(systemName: "heart.fill")
                     .foregroundColor(.accentColor)
@@ -52,13 +52,13 @@ struct MyListCardView: View {
             }).padding([.top])
         }
     }
-    func unfavourite(media: Media){
-        if let i = myMovies.firstIndex(where: {$0.id == media.id }){
-            print(myMovies.count)
-            myMovies.remove(at: i)
-            print(myMovies.count)
-        }
-    }
+//    func unfavourite(media: Media){
+//        if let i = myMovies.firstIndex(where: {$0.id == media.id }){
+//            print(myMovies.count)
+//            myMovies.remove(at: i)
+//            print(myMovies.count)
+//        }
+//    }
 }
 
 //struct MyListCardView_Previews: PreviewProvider {

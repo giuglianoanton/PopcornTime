@@ -9,9 +9,7 @@ import UIKit
 import SwiftUI
 
 class MyListViewController: UIViewController {
-    
-    var myMovies: [Media] = []
-    
+        
     var searchController = UISearchController()
     var container = UIView()
     
@@ -23,11 +21,13 @@ class MyListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("myListViewController")
+        MoviesSingleton.sharedInstance.printMovies()
         configureNavBar()
         
         let myListView = UIHostingController(rootView: MyListView())
         myListView.view.backgroundColor = .systemBackground
-
+        
         // Do any additional setup after loading the view.
         view.backgroundColor = .systemBackground
         
@@ -39,9 +39,9 @@ class MyListViewController: UIViewController {
         myListView.view.frame = container.bounds
         container.addSubview(myListView.view)
         myListView.didMove(toParent: self)
-        
-        
+   
     }
+
     
     private func configureNavBar(){
         // navigation configuration

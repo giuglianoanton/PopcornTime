@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct MyListView: View {
-    
+    @StateObject var movies = MoviesSingleton.sharedInstance
     var body: some View {
-//        NavigationStack{
-        if !myMovies.isEmpty {
-            List{
-                ForEach(myMovies, id: \.id){ movie in
-                    MyListCardView(media: movie)
-                }
-                .listRowSeparator(.hidden)
-                .listRowBackground(Color.clear)
+        List{
+            ForEach(movies.movies, id: \.id){ movie in
+                MyListCardView(media: movie)
             }
-            .listStyle(.plain)
-        }
-            
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.clear)
+        }.listStyle(.plain)
+        Button(action: {
+            print(MoviesSingleton.sharedInstance.movies)
+        }, label: {
+            Text("print")
+        })
     }
 }
 

@@ -11,7 +11,7 @@ struct Results: Codable{
     var results: [Media]
 }
 
-struct Media: Codable {
+struct Media: Codable, Equatable {
     let adult: Bool
     let backdrop_path: String
     let id: Int

@@ -79,15 +79,15 @@ class MediaCollectionViewCell: UICollectionViewCell {
     //heart button
     private let heartButton: UIButton = {
         let button = UIButton()
-//
+        //
         let iconSize = UIImage.SymbolConfiguration(pointSize: 21, weight: .bold)
-
-
+        
+        
         button.setImage(UIImage(systemName: "heart", withConfiguration: iconSize), for: .normal)
         button.setImage(UIImage(systemName: "heart.fill", withConfiguration: iconSize), for: .selected)
-
+        
         button.titleLabel?.tintColor = UIColor.tintColor
-
+        
         button.addTarget(self, action: #selector(saveAsFavourite), for: .touchDown)
         return button
     }()
@@ -106,7 +106,7 @@ class MediaCollectionViewCell: UICollectionViewCell {
         
         mediaLabels.addSubview(year)
         heartButton.frame = CGRect(x: underLayer.bounds.origin.x + 105, y: underLayer.bounds.origin.y + 230, width: 75, height: 75)
-//        configureButton()
+        //        configureButton()
         underLayer.addSubview(heartButton)
     }
     
@@ -125,7 +125,7 @@ class MediaCollectionViewCell: UICollectionViewCell {
     // set the poster in the cache
     public func configure(with poster: String) {
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(poster)") else {return}
-        print(url)
+        //        print(url)
         posterImageView.sd_setImage(with: url, completed: nil)
     }
     
@@ -138,37 +138,44 @@ class MediaCollectionViewCell: UICollectionViewCell {
         }
     }
     
-//    // configure button
-//    func configureButton(){
-//
-//        let iconSize = UIImage.SymbolConfiguration(pointSize: 21, weight: .bold)
-//        var icon = "heart"
-//        if let media = movie{
-//            if (myMovies.first(where: { $0.id == media.id}) != nil){
-//                icon = "heart.fill"
-//            }
-//        }
-   
-//        heartButton.setImage(UIImage(systemName: icon, withConfiguration: iconSize), for: .normal)
-////        button.setImage(UIImage(systemName: "heart", withConfiguration: iconSize), for: .normal)
-//
-//        heartButton.titleLabel?.tintColor = UIColor.tintColor
-//
-//        heartButton.addTarget(self, action: #selector(saveAsFavourite), for: .touchDown)
-//    }
+    //    // configure button
+    //    func configureButton(){
+    //
+    //        let iconSize = UIImage.SymbolConfiguration(pointSize: 21, weight: .bold)
+    //        var icon = "heart"
+    //        if let media = movie{
+    //            if (myMovies.first(where: { $0.id == media.id}) != nil){
+    //                icon = "heart.fill"
+    //            }
+    //        }
     
-    // obj func to save and unsave using heart Button
+    //        heartButton.setImage(UIImage(systemName: icon, withConfiguration: iconSize), for: .normal)
+    ////        button.setImage(UIImage(systemName: "heart", withConfiguration: iconSize), for: .normal)
+    //
+    //        heartButton.titleLabel?.tintColor = UIColor.tintColor
+    //
+    //        heartButton.addTarget(self, action: #selector(saveAsFavourite), for: .touchDown)
+    //    }
+    
+    //    // obj func to save and unsave using heart Button
+    //    @objc func saveAsFavourite(sender: UIButton!, index: Int){
+    //        sender.isSelected.toggle()
+    //        if sender.isSelected{
+    //            if let movie = movie {
+    //                myMovies.append(movie)
+    //                //                print(myMovies)
+    //                //                print("https://image.tmdb.org/t/p/w500/\(String(describing: movie.poster_path))")
+    //                print("saved")
+    //            }
+    //        } else{
+    //            print("unsaved")
+    //        }
+    //    }
+    
     @objc func saveAsFavourite(sender: UIButton!, index: Int){
         sender.isSelected.toggle()
-        if sender.isSelected{
-            if let movie = movie {
-                myMovies.append(movie)
-//                print(myMovies)
-//                print("https://image.tmdb.org/t/p/w500/\(String(describing: movie.poster_path))")
-                print("saved")
-            }
-        } else{
-            print("unsaved")
+        if let movie = movie{
+            MoviesSingleton.sharedInstance.didTapHeart(movie: movie)
         }
     }
 }
