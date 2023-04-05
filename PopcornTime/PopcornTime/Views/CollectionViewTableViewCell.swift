@@ -12,9 +12,7 @@ class CollectionViewTableViewCell: UITableViewCell {
     var movies: [Media] = []
     
     static let identifier = "CollectionViewTableViewCell"
-    
-//    var movies: [Media] = [Media]()
-    
+        
     private let collectionView: UICollectionView = {
         
         // set the layout of the collection view
@@ -52,7 +50,7 @@ class CollectionViewTableViewCell: UITableViewCell {
             self?.collectionView.reloadData()
         }
         
-        //        collectionView.showsHorizontalScrollIndicator = false
+//        collectionView.showsHorizontalScrollIndicator = false
     }
     
     
@@ -74,20 +72,18 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MediaCollectionViewCell.identifier, for: indexPath) as? MediaCollectionViewCell else {
             return UICollectionViewCell()
         }
-        // call the configuration for the cache stuff
-//        guard let movieModel = movies[indexPath.row].poster_path  else {
-//            return UICollectionViewCell()
-//        }
         let movieModel = movies[indexPath.row]
-        
-//        cell.configure(with: movieModel)
-//        cell.configureLabels(with: movies[indexPath.row])
         if let poster = movies[indexPath.row].poster_path {
             cell.configure(with: poster)
         }
         cell.configureLabels(with: movies[indexPath.row])
         cell.movie = movieModel
         
+        if MoviesSingleton.sharedInstance.movies.contains(where: {$0.id == movies[indexPath.row].id}){
+            cell.heartButton.isSelected = true
+        } else{
+            cell.heartButton.isSelected = false
+        }
         return cell
     }
     
