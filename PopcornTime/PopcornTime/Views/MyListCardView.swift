@@ -23,11 +23,6 @@ struct MyListCardView: View {
                     placeholder: {
                         EmptyView()
                     })
-                        
-                        
-//                        .scaledToFill()
-                    
-                        
                 }
                 Spacer()
                 VStack(alignment: .leading){
@@ -40,16 +35,6 @@ struct MyListCardView: View {
                     Spacer()
                 }.frame(width: 166, height: 230)
             }.frame(width: 345, height: 245)
-            
-            Button(action: {
-                print("unsaved")
-                MoviesSingleton.sharedInstance.didTapHeart(movie: media)
-            }, label: {
-                Image(systemName: "heart.fill")
-                    .foregroundColor(.accentColor)
-                    .font(.system(size: 20, weight: .bold))
-                    .shadow(color:.black.opacity(0.18), radius: 3, x: 0, y:4)
-            }).padding([.top])
         }
     }
 //    func unfavourite(media: Media){

@@ -13,16 +13,10 @@ class MyListViewController: UIViewController {
     var searchController = UISearchController()
     var container = UIView()
     
-//        let myListView: UIHostingController = {
-//            let myListView = UIHostingController(rootView: MyListView(myMovies: myMovies))
-//            myListView.view.backgroundColor = .systemBackground
-//            return myListView
-//        }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("myListViewController")
-        MoviesSingleton.sharedInstance.printMovies()
         configureNavBar()
         
         let myListView = UIHostingController(rootView: MyListView())

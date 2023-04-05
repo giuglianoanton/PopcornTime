@@ -29,6 +29,13 @@ class MoviesSingleton: ObservableObject {
             }
     }
     
+    func remove(movie: Media){
+        if let index = MoviesSingleton.sharedInstance.movies.firstIndex(where: {$0.id == movie.id}){
+            movies.remove(at: index)
+        }
+    }
+    
+    
     func printMovies(){
         print("Movies list:")
         print(MoviesSingleton.sharedInstance.movies)

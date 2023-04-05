@@ -13,15 +13,18 @@ struct MyListView: View {
         List{
             ForEach(movies.movies, id: \.id){ movie in
                 MyListCardView(media: movie)
+                    .swipeActions(allowsFullSwipe: true) {
+                        Button(role: .destructive) {
+                            movies.remove(movie: movie)
+                            print("Delete")
+                        } label: {
+                            Label("Delete", systemImage: "trash.fill")
+                        }
+                    }
             }
             .listRowSeparator(.hidden)
             .listRowBackground(Color.clear)
         }.listStyle(.plain)
-        Button(action: {
-            print(MoviesSingleton.sharedInstance.movies)
-        }, label: {
-            Text("print")
-        })
     }
 }
 
