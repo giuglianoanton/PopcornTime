@@ -22,9 +22,13 @@ https://developers.themoviedb.org
 To install the app, follow these steps:
 <br>Clone the repository to your local machine.
 <br>Open the project in Xcode.
-<br>Create an env var in your scheme and call it api_key.
+<br>Create an env var in your scheme and call it api_key*.
 <br>Add your API key as value for api_key.
 <br>Build and run the project on your iOS device or simulator.
+<br>
+<br>&emsp;&emsp;*In order to use the app on device or simulator after the first launch, the api key should not be saved as an enviromental var. 
+<br>&emsp;&emsp;&nbsp;Use it as an env var only if you don't want to save it on devices/simulator/push it on your remote repo.
+
 
 ## **Usage**
 
