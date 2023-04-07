@@ -8,7 +8,7 @@
 import UIKit
 
 class WhatsNewViewController: UIViewController {
- 
+    
     // configure the table
     private let table: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
@@ -27,7 +27,7 @@ class WhatsNewViewController: UIViewController {
         
         table.delegate =  self
         table.dataSource = self
-
+        
     }
     
     
@@ -46,6 +46,7 @@ class WhatsNewViewController: UIViewController {
         let searchController = UISearchController(searchResultsController: SearchResultViewController())
         //configure the searchbar
         configureSearchBar(with: searchController)
+        searchController.searchResultsUpdater = self
         
     }
     
@@ -53,11 +54,11 @@ class WhatsNewViewController: UIViewController {
     private func configureSearchBar(with searchController: UISearchController){
         searchController.searchBar.placeholder = "Enter a Movie title"
         searchController.searchBar.searchBarStyle = .minimal
-        searchController.view.backgroundColor = .systemCyan
+        searchController.view.backgroundColor = .systemBackground
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
     }
-
+    
     /*
      // MARK: - Navigation
      
@@ -130,5 +131,30 @@ extension WhatsNewViewController: UITableViewDelegate, UITableViewDataSource{
         header.textLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x, y: header.bounds.origin.y , width: header.bounds.width, height: header.bounds.height)
         header.textLabel?.textColor = .secondaryLabel
+    }
+}
+
+extension WhatsNewViewController: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchbar = searchController.searchBar
+        
+        guard let query = searchbar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty,
+              query.trimmingCharacters(in: .whitespaces).count >= 4,
+              let resultsController = searchController.searchResultsController as? SearchResultViewController else {
+            return
+        }
+        ApiCaller.shared.getRequest(query: query, searchKey: searchingKeys[5]){ x in
+            let result = x
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let moviesResponse):
+                    resultsController.moviesResults = moviesResponse
+                    resultsController.searchResultsCollectionView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }
