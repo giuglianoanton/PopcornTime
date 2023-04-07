@@ -24,14 +24,17 @@ class ApiCaller{
     static let shared = ApiCaller()
     
     
-    func getRequest(searchKey: String, completion: @escaping (Result<[Media], Error>) -> Void){
+    func getRequest(query: String = "", searchKey: String, completion: @escaping (Result<[Media], Error>) -> Void){
         // url to send request
         var strURL = "\(baseUrl)\(searchKey)?api_key=\(key)"
         if searchKey == searchingKeys[2] || searchKey == searchingKeys[3]{
             strURL = "\(baseUrl)\(searchKey)?api_key=\(key)&language=en-US&page=1"
         }
         if searchKey == searchingKeys[5] {
-            strURL = "\(baseUrl)\(searchKey)?api_key=\(key)&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate"
+            // transform the query
+            guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+            
+            strURL = "\(baseUrl)\(searchKey)?api_key=\(key)&query=\(query)"
         }
         guard let url = URL(string: strURL) else {return}
         print(strURL)
@@ -57,5 +60,6 @@ class ApiCaller{
         task.resume()
         
     }
+    
     
 }

@@ -17,7 +17,7 @@ let searchingKeys = [
     "3/movie/upcoming",
     "3/movie/popular",
     "3/movie/top_rated",
-    "3/discover/movie"
+    "3/search/movie"
 ]
 
 // 4 cases for 4 sections we have in the whatsnew
