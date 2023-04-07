@@ -9,13 +9,13 @@ import UIKit
 
 class SearchResultViewController: UIViewController {
 
-    private var movies = [Media]()
-    private let searchResultsCollectionView: UICollectionView = {
+    public var moviesResults = [Media]()
+    public let searchResultsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 300, height: 200)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 55)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(MediaCollectionViewCell.self, forCellWithReuseIdentifier: MediaCollectionViewCell.identifier)
+        collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
         return collectionView
     }()
     
@@ -25,8 +25,8 @@ class SearchResultViewController: UIViewController {
         view.addSubview(searchResultsCollectionView)
         searchResultsCollectionView.delegate = self
         searchResultsCollectionView.dataSource = self
-        // Do any additional setup after loading the view.
     }
+    
     override func viewDidLayoutSubviews() {
         searchResultsCollectionView.frame = view.bounds
     }
@@ -45,13 +45,15 @@ class SearchResultViewController: UIViewController {
 
 extension SearchResultViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return moviesResults.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MediaCollectionViewCell.identifier, for: indexPath) as? MediaCollectionViewCell else{
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else{
             return UICollectionViewCell()
         }
+       
+        cell.configureLabels(with: moviesResults[indexPath.row])
         return cell
     }
 }
