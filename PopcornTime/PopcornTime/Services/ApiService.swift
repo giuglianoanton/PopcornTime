@@ -30,6 +30,9 @@ class ApiCaller{
         if searchKey == searchingKeys[2] || searchKey == searchingKeys[3]{
             strURL = "\(baseUrl)\(searchKey)?api_key=\(key)&language=en-US&page=1"
         }
+        if searchKey == searchingKeys[5] {
+            strURL = "\(baseUrl)\(searchKey)?api_key=\(key)&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate"
+        }
         guard let url = URL(string: strURL) else {return}
         print(strURL)
 
