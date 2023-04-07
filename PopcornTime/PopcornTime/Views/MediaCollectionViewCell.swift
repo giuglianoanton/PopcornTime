@@ -82,15 +82,11 @@ class MediaCollectionViewCell: UICollectionViewCell {
         
         // icon size configuration
         let iconSize = UIImage.SymbolConfiguration(pointSize: 21, weight: .bold)
-        
-//        button.setBackgroundImage(UIImage(systemName: "heart", withConfiguration: iconSize), for: UIControl.State.normal)
-//        button.setBackgroundImage(UIImage(systemName: "heart.fill", withConfiguration: iconSize), for: UIControl.State.selected)
 
         button.setImage(UIImage(systemName: "heart", withConfiguration: iconSize), for: .normal)
         button.setImage(UIImage(systemName: "heart.fill", withConfiguration: iconSize), for: .selected)
         
         button.titleLabel?.tintColor = UIColor.tintColor
-        
         
         button.addTarget(self, action: #selector(saveAsFavourite), for: .touchDown)
         return button

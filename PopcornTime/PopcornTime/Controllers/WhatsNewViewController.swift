@@ -9,7 +9,7 @@ import UIKit
 
 class WhatsNewViewController: UIViewController {
     
-   
+    
     // create searchbar
     let searchController = UISearchController()
     
@@ -32,10 +32,7 @@ class WhatsNewViewController: UIViewController {
         
         table.delegate =  self
         table.dataSource = self
-        
-//        DispatchQueue.main.async {
-//            self.getRequest()
-//        }
+
     }
     
     
@@ -53,21 +50,7 @@ class WhatsNewViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         
     }
-    
-//    // call the api func
-//    private func getRequest() {
-//        ApiCaller.shared.getRequest { results in
-//            switch results{
-//            case .success(let moviesResponse):
-////                print(moviesResponse)
-//                movies.append(moviesResponse[0])
-////                print(movies)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
-    
+
     /*
      // MARK: - Navigation
      
@@ -104,7 +87,7 @@ extension WhatsNewViewController: UITableViewDelegate, UITableViewDataSource{
             getRequestForSection(searchKey: searchingKeys[Sections.Popular.rawValue], cell: cell)
         case Sections.Upcoming.rawValue:
             getRequestForSection(searchKey: searchingKeys[Sections.Upcoming.rawValue], cell: cell)
-       case Sections.TopRated.rawValue:
+        case Sections.TopRated.rawValue:
             getRequestForSection(searchKey: searchingKeys[Sections.TopRated.rawValue], cell: cell)
         default:
             return UITableViewCell()

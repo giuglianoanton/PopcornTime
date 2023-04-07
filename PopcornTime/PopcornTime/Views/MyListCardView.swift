@@ -37,13 +37,6 @@ struct MyListCardView: View {
             }.frame(width: 345, height: 245)
         }
     }
-//    func unfavourite(media: Media){
-//        if let i = myMovies.firstIndex(where: {$0.id == media.id }){
-//            print(myMovies.count)
-//            myMovies.remove(at: i)
-//            print(myMovies.count)
-//        }
-//    }
 }
 
 //struct MyListCardView_Previews: PreviewProvider {
