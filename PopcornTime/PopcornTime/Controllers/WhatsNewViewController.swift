@@ -8,12 +8,7 @@
 import UIKit
 
 class WhatsNewViewController: UIViewController {
-    
-    
-    // create searchbar
-    let searchController = UISearchController()
-    
-    
+ 
     // configure the table
     private let table: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
@@ -46,9 +41,21 @@ class WhatsNewViewController: UIViewController {
     private func configureNavBar(){
         // navigation configuration
         self.title = "What's New"
+        
+        // create searchbar
+        let searchController = UISearchController(searchResultsController: SearchResultViewController())
+        //configure the searchbar
+        configureSearchBar(with: searchController)
+        
+    }
+    
+    //configuration for the searchbar
+    private func configureSearchBar(with searchController: UISearchController){
+        searchController.searchBar.placeholder = "Enter a Movie title"
+        searchController.searchBar.searchBarStyle = .minimal
+        searchController.view.backgroundColor = .systemCyan
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        
     }
 
     /*
