@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A922CC3129E0690D00668ED0 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A922CC3029E0690D00668ED0 /* SearchResultViewController.swift */; };
+		A922CC3329E072C900668ED0 /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A922CC3229E072C900668ED0 /* TitleCollectionViewCell.swift */; };
 		A97C15DC29D1DF18008F014B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C15DB29D1DF18008F014B /* AppDelegate.swift */; };
 		A97C15DE29D1DF18008F014B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C15DD29D1DF18008F014B /* SceneDelegate.swift */; };
 		A97C15E029D1DF18008F014B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C15DF29D1DF18008F014B /* TabBarViewController.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A922CC3029E0690D00668ED0 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		A922CC3229E072C900668ED0 /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		A97C15D829D1DF18008F014B /* PopcornTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopcornTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A97C15DB29D1DF18008F014B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A97C15DD29D1DF18008F014B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 				A97C15DF29D1DF18008F014B /* TabBarViewController.swift */,
 				A97C15F029D1E46F008F014B /* WhatsNewViewController.swift */,
 				A97C15F229D1E48C008F014B /* MyListViewController.swift */,
+				A922CC3029E0690D00668ED0 /* SearchResultViewController.swift */,
+				A922CC3229E072C900668ED0 /* TitleCollectionViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -219,7 +225,9 @@
 				A97C160129D22EE7008F014B /* MediaCollectionViewCell.swift in Sources */,
 				A97C15FF29D1EF37008F014B /* ApiService.swift in Sources */,
 				A97C15F329D1E48C008F014B /* MyListViewController.swift in Sources */,
+				A922CC3129E0690D00668ED0 /* SearchResultViewController.swift in Sources */,
 				A97C161029D4743C008F014B /* MoviesSingleton.swift in Sources */,
+				A922CC3329E072C900668ED0 /* TitleCollectionViewCell.swift in Sources */,
 				A97C15DE29D1DF18008F014B /* SceneDelegate.swift in Sources */,
 				A97C15F129D1E46F008F014B /* WhatsNewViewController.swift in Sources */,
 			);

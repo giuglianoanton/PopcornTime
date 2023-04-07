@@ -15,18 +15,18 @@ class TitleCollectionViewCell: UICollectionViewCell {
     
     private let mediaLabels: UIView = {
         let mediaLabels = UIView()
-        mediaLabels.frame = CGRect(x: mediaLabels.bounds.origin.x, y: mediaLabels.bounds.origin.y, width: UIScreen.main.bounds.width, height: 32)
+        mediaLabels.frame = CGRect(x: mediaLabels.bounds.origin.x, y: mediaLabels.bounds.origin.y, width: UIScreen.main.bounds.width, height: 50)
         return mediaLabels
     }()
     
     // title
     private let title: UILabel = {
         let title = UILabel()
-        title.frame = CGRect(x: title.bounds.origin.x, y: title.bounds.origin.y, width: 111, height: 32)
+        title.frame = CGRect(x: title.bounds.origin.x, y: title.bounds.origin.y, width: UIScreen.main.bounds.width * (4/5), height: 50)
         
         title.textAlignment = .justified
         title.text = "title".capitalized
-        title.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.bold)
+        title.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.bold)
         return title
     }()
     //year
@@ -36,7 +36,7 @@ class TitleCollectionViewCell: UICollectionViewCell {
         
         year.textAlignment = .justified
         year.text = "2023"
-        year.font = UIFont.systemFont(ofSize: 8, weight: UIFont.Weight.semibold)
+        year.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.semibold)
         
         return year
     }()
@@ -45,7 +45,7 @@ class TitleCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(mediaLabels)
         mediaLabels.addSubview(title)
-        year.frame = CGRect(x: year.bounds.origin.x, y: title.font.pointSize + 2, width: 111, height: 32)
+        year.frame = CGRect(x: year.bounds.origin.x, y: title.font.pointSize + 2, width: 111, height: 50)
         
         mediaLabels.addSubview(year)
         
@@ -56,7 +56,7 @@ class TitleCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        mediaLabels.frame = contentView.bounds
+        mediaLabels.frame = contentView.bounds.offsetBy(dx: 15, dy: 0)
     }
     // set the labels
     public func configureLabels(with movie: Media) {
