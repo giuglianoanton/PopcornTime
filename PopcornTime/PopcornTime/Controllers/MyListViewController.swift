@@ -9,11 +9,11 @@ import UIKit
 import SwiftUI
 
 class MyListViewController: UIViewController {
-        
-    var searchController = UISearchController()
+    
+    
     var container = UIView()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,18 +33,29 @@ class MyListViewController: UIViewController {
         myListView.view.frame = container.bounds
         container.addSubview(myListView.view)
         myListView.didMove(toParent: self)
-   
+        
     }
-
+    
     
     private func configureNavBar(){
         // navigation configuration
         self.title = "My List"
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
         
+        // create searchbar
+        let searchController = UISearchController(searchResultsController: SearchResultViewController())
+        //configure the searchbar
+        configureSearchBar(with: searchController)
+        searchController.searchResultsUpdater = self
     }
     
+    //configuration for the searchbar
+    private func configureSearchBar(with searchController: UISearchController){
+        searchController.searchBar.placeholder = "Enter a Movie title"
+        searchController.searchBar.searchBarStyle = .minimal
+        searchController.view.backgroundColor = .systemBackground
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
     
     
     /*
@@ -57,4 +68,28 @@ class MyListViewController: UIViewController {
      }
      */
     
+}
+extension MyListViewController: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchbar = searchController.searchBar
+        
+        guard let query = searchbar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty,
+              query.trimmingCharacters(in: .whitespaces).count >= 4,
+              let resultsController = searchController.searchResultsController as? SearchResultViewController else {
+            return
+        }
+        for movie in MoviesSingleton.sharedInstance.movies{
+            if let title = movie.title{
+                if title.contains(query) {
+                    DispatchQueue.main.async {
+                        if !resultsController.moviesResults.contains(where: {$0.id == movie.id}){
+                            resultsController.moviesResults.append(movie)
+                            resultsController.searchResultsCollectionView.reloadData()
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
