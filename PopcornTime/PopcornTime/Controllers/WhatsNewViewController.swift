@@ -152,7 +152,7 @@ extension WhatsNewViewController: UISearchResultsUpdating{
                     resultsController.moviesResults = moviesResponse
                     resultsController.searchResultsCollectionView.reloadData()
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    print(error)
                 }
             }
         }

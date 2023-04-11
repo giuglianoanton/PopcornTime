@@ -8,12 +8,14 @@
 import Foundation
 
 struct Results: Codable{
+    let page: Int
+    let total_pages, total_results: Int
     var results: [Media]
 }
 
 struct Media: Codable, Equatable {
     let adult: Bool
-    let backdrop_path: String
+    let backdrop_path: String?
     let id: Int
     let title: String?
     let original_language: String?

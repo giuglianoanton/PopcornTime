@@ -49,12 +49,15 @@ class ApiCaller{
             
             // try to decode the response data you receive as json
             do{
+                print(data)
                 let responseResults = try JSONDecoder().decode(Results.self, from: data)
+                
+               
                 completion(.success(responseResults.results))
-//                print(responseResults)
+                print(responseResults.results)
             }catch{
                 completion(.failure(error))
-                print(error.localizedDescription)
+                print(error)
             }
         }
         task.resume()
