@@ -28,7 +28,7 @@ struct MyListCardView: View {
                 VStack(alignment: .leading){
                     Text(media.title?.capitalized ?? "Unknown")
                         .font(.system(size: 16, weight: .bold))
-                    Text(media.release_date ?? "Unknown")
+                    Text(media.release_date?.prefix(4) ?? "Unknown")
                         .font(.system(size: 10, weight: .semibold))
                     Text(media.overview ?? "Unknown")
                         .font(.system(size: 10, weight: .regular))
