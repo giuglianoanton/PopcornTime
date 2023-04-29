@@ -37,7 +37,7 @@ class ApiCaller{
             strURL = "\(baseUrl)\(searchKey)?api_key=\(key)&query=\(query)"
         }
         guard let url = URL(string: strURL) else {return}
-        print(strURL)
+//        print(strURL)
 
         // create the session
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {
@@ -51,7 +51,7 @@ class ApiCaller{
             do{
                 let responseResults = try JSONDecoder().decode(Results.self, from: data)
                 completion(.success(responseResults.results))
-                print(responseResults.results)
+//                print(responseResults.results)
             }catch{
                 completion(.failure(error))
                 print(error)
