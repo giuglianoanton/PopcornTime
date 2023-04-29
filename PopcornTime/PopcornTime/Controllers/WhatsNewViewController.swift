@@ -84,7 +84,7 @@ extension WhatsNewViewController: UITableViewDelegate, UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell()
             
         }
-        
+        cell.delegate = self
         // switch the case of the section to understand what get request to do
         switch indexPath.section{
         case Sections.TrendingToday.rawValue:
@@ -154,6 +154,19 @@ extension WhatsNewViewController: UISearchResultsUpdating{
                 case .failure(let error):
                     print(error)
                 }
+            }
+        }
+    }
+}
+
+extension WhatsNewViewController: CollectionViewTableViewCellDelegate{
+    func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, movieSingleton: DetailMovieSingleton) {
+        DispatchQueue.main.async {
+            [weak self] in
+            let vc = DetailedViewController()
+            if let movie = DetailMovieSingleton.sharedInstance.movie{
+                vc.configure(with: movie)
+                self?.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }

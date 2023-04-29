@@ -7,9 +7,16 @@
 
 import UIKit
 
+// create the protocol
+protocol CollectionViewTableViewCellDelegate: AnyObject {
+    func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, movieSingleton: DetailMovieSingleton)
+}
+
 class CollectionViewTableViewCell: UITableViewCell {
     
     var movies: [Media] = []
+    
+    weak var delegate: CollectionViewTableViewCellDelegate?
     
     static let identifier = "CollectionViewTableViewCell"
         
@@ -90,6 +97,16 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
     // number of the cells
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // once a cell is selected, it has to be deselected too
+        collectionView.deselectItem(at: indexPath, animated: true)
+        // save the selected movie
+        DetailMovieSingleton.sharedInstance.didSelect(movie: movies[indexPath.row])
+        // delegate to that cell selected
+        delegate?.collectionViewTableViewCellDidTapCell(self, movieSingleton: DetailMovieSingleton.sharedInstance)
     }
     
 }
