@@ -36,7 +36,6 @@ class DetailedViewController: UIViewController {
         title.isUserInteractionEnabled = false
         title.contentVerticalAlignment = .top
         title.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
-        title.frame = CGRect(x: title.bounds.origin.x, y: title.bounds.origin.y, width: 155, height: 70)
         return title
     }()
     
@@ -76,21 +75,43 @@ class DetailedViewController: UIViewController {
         return mediaLabels
     }()
     
+    //heart button
+    let heartButton: UIButton = {
+        let button = UIButton()
+        
+        // icon size configuration
+        let iconSize = UIImage.SymbolConfiguration(pointSize: 21, weight: .bold)
+
+        button.setImage(UIImage(systemName: "heart", withConfiguration: iconSize), for: .normal)
+        button.setImage(UIImage(systemName: "heart.fill", withConfiguration: iconSize), for: .selected)
+        
+        button.titleLabel?.tintColor = UIColor.tintColor
+        
+        button.addTarget(self, action: #selector(saveAsFavourite), for: .touchDown)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        underLayer.frame = CGRect(x: view.bounds.origin.x + 30, y: view.bounds.origin.y + 100, width: view.frame.width - 60, height: view.frame.height - 60)
+        underLayer.frame = CGRect(x: view.bounds.origin.x + 30, y: view.bounds.origin.y + 150, width: view.frame.width - 60, height: view.frame.height - 60)
         view.backgroundColor = .systemBackground
         view.addSubview(underLayer)
+        
+        heartButton.frame = CGRect(x: Int(heartButton.bounds.origin.x) + 120, y: Int(heartButton.bounds.origin.y), width: 30, height: 30)
+        
         underLayer.addSubview(posterImageView)
         
-        year.frame = CGRect(x: year.bounds.origin.x, y: movieTitle.frame.height, width: 155, height: 20)
+        
         
         mediaLabels.frame = CGRect(x: posterImageView.bounds.origin.x + posterImageView.frame.width + 12, y: posterImageView.bounds.origin.y , width: 155, height: 100)
         underLayer.addSubview(mediaLabels)
+        movieTitle.frame = CGRect(x: movieTitle.bounds.origin.x, y: movieTitle.bounds.origin.y + heartButton.frame.height, width: 155, height: 70)
         mediaLabels.addSubview(movieTitle)
+        year.frame = CGRect(x: year.bounds.origin.x, y: year.bounds.origin.y + 3, width: 155, height: 20)
         mediaLabels.addSubview(year)
         ratings.frame = CGRect(x: ratings.bounds.origin.x, y: movieTitle.frame.height + year.frame.height, width: 155, height: 32)
         mediaLabels.addSubview(ratings)
+        mediaLabels.addSubview(heartButton)
         overview.frame = CGRect(x: Int(overview.bounds.origin.x), y: Int(posterImageView.frame.height) + 15, width: Int(view.frame.width) - 60, height: 300)
         underLayer.addSubview(overview)
         
@@ -131,7 +152,12 @@ class DetailedViewController: UIViewController {
         return ratings
     }
     
-
+    @objc func saveAsFavourite(sender: UIButton!){
+        sender.isSelected.toggle()
+        if let movie = DetailMovieSingleton.sharedInstance.movie {
+            MoviesSingleton.sharedInstance.didTapHeart(movie: movie)
+        }
+    }
     /*
     // MARK: - Navigation
 

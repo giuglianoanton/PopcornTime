@@ -167,7 +167,13 @@ extension WhatsNewViewController: CollectionViewTableViewCellDelegate{
             if let movie = DetailMovieSingleton.sharedInstance.movie{
                 vc.configure(with: movie)
                 self?.navigationController?.pushViewController(vc, animated: true)
+                if MoviesSingleton.sharedInstance.movies.contains(where: {$0.id == movie.id}){
+                    vc.heartButton.isSelected = true
+                } else{
+                    vc.heartButton.isSelected = false
+                }
             }
+            
         }
     }
 }
