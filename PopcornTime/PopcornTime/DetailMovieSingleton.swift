@@ -18,9 +18,4 @@ class DetailMovieSingleton: ObservableObject {
         DetailMovieSingleton.sharedInstance.movie = movie
         print(movie.original_title)
     }
-    
-    func printMovies(){
-        print("Movie")
-        print(DetailMovieSingleton.sharedInstance.movie)
-    }
 }
