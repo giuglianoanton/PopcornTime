@@ -29,11 +29,14 @@ class DetailedViewController: UIViewController {
     }()
     
     // title
-    private let movieTitle: UILabel = {
-        let title = UILabel()
+    private let movieTitle: UITextField = {
+        
+        let title = UITextField()
         title.textAlignment = .justified
-        title.text = "title".capitalized
+        title.isUserInteractionEnabled = false
+        title.contentVerticalAlignment = .top
         title.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
+        title.frame = CGRect(x: title.bounds.origin.x, y: title.bounds.origin.y, width: 155, height: 70)
         return title
     }()
     
@@ -80,14 +83,13 @@ class DetailedViewController: UIViewController {
         view.addSubview(underLayer)
         underLayer.addSubview(posterImageView)
         
-        movieTitle.frame = CGRect(x: movieTitle.bounds.origin.x, y: movieTitle.bounds.origin.y, width: 155, height: 32)
-        year.frame = CGRect(x: year.bounds.origin.x, y: movieTitle.font.pointSize + 2, width: 155, height: 32)
+        year.frame = CGRect(x: year.bounds.origin.x, y: movieTitle.frame.height, width: 155, height: 20)
         
-        mediaLabels.frame = CGRect(x: posterImageView.bounds.origin.x + posterImageView.frame.width + 12, y: posterImageView.bounds.origin.y + 15 , width: 155, height: 100)
+        mediaLabels.frame = CGRect(x: posterImageView.bounds.origin.x + posterImageView.frame.width + 12, y: posterImageView.bounds.origin.y , width: 155, height: 100)
         underLayer.addSubview(mediaLabels)
         mediaLabels.addSubview(movieTitle)
         mediaLabels.addSubview(year)
-        ratings.frame = CGRect(x: ratings.bounds.origin.x, y: movieTitle.frame.height + year.frame.height + 6, width: 155, height: 32)
+        ratings.frame = CGRect(x: ratings.bounds.origin.x, y: movieTitle.frame.height + year.frame.height, width: 155, height: 32)
         mediaLabels.addSubview(ratings)
         overview.frame = CGRect(x: Int(overview.bounds.origin.x), y: Int(posterImageView.frame.height) + 15, width: Int(view.frame.width) - 60, height: 300)
         underLayer.addSubview(overview)
@@ -99,14 +101,16 @@ class DetailedViewController: UIViewController {
     
     // set the poster in the cache
     public func configure(with movie: Media) {
+        var paragraphStyle = NSMutableParagraphStyle()
+
+        movieTitle.attributedText = NSMutableAttributedString(string: movie.title ?? "", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         
-        movieTitle.text = movie.original_title
         if let release = movie.release_date {
             year.text = String(release.prefix(4))
             
         }
+        
         ratings.text = setRatings(vote: movie.vote_average)
-        var paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.05
         overview.attributedText = NSMutableAttributedString(string: movie.overview ?? "", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
  
