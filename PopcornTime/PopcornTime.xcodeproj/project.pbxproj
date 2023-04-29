@@ -26,6 +26,8 @@
 		A97C160C29D46E87008F014B /* MyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C160B29D46E87008F014B /* MyListView.swift */; };
 		A97C160E29D46E98008F014B /* MyListCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C160D29D46E98008F014B /* MyListCardView.swift */; };
 		A97C161029D4743C008F014B /* MoviesSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C160F29D4743C008F014B /* MoviesSingleton.swift */; };
+		A9C8099229FD52BA0085000B /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C8099129FD52BA0085000B /* DetailedViewController.swift */; };
+		A9C8099429FD60D90085000B /* DetailMovieSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C8099329FD60D90085000B /* DetailMovieSingleton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		A97C160B29D46E87008F014B /* MyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListView.swift; sourceTree = "<group>"; };
 		A97C160D29D46E98008F014B /* MyListCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListCardView.swift; sourceTree = "<group>"; };
 		A97C160F29D4743C008F014B /* MoviesSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesSingleton.swift; sourceTree = "<group>"; };
+		A9C8099129FD52BA0085000B /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
+		A9C8099329FD60D90085000B /* DetailMovieSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieSingleton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 			children = (
 				A97C15DB29D1DF18008F014B /* AppDelegate.swift */,
 				A97C160F29D4743C008F014B /* MoviesSingleton.swift */,
+				A9C8099329FD60D90085000B /* DetailMovieSingleton.swift */,
 				A97C15FA29D1EEB8008F014B /* Models */,
 				A97C15F429D1E897008F014B /* Views */,
 				A97C15EF29D1E459008F014B /* Controllers */,
@@ -107,6 +112,7 @@
 				A97C15F229D1E48C008F014B /* MyListViewController.swift */,
 				A922CC3029E0690D00668ED0 /* SearchResultViewController.swift */,
 				A922CC3229E072C900668ED0 /* TitleCollectionViewCell.swift */,
+				A9C8099129FD52BA0085000B /* DetailedViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -219,9 +225,11 @@
 				A97C160E29D46E98008F014B /* MyListCardView.swift in Sources */,
 				A97C15E029D1DF18008F014B /* TabBarViewController.swift in Sources */,
 				A97C15DC29D1DF18008F014B /* AppDelegate.swift in Sources */,
+				A9C8099429FD60D90085000B /* DetailMovieSingleton.swift in Sources */,
 				A97C15FC29D1EED6008F014B /* MediaResponseModel.swift in Sources */,
 				A97C160A29D23FD5008F014B /* Helpers.swift in Sources */,
 				A97C15F629D1E8BC008F014B /* CollectionViewTableViewCell.swift in Sources */,
+				A9C8099229FD52BA0085000B /* DetailedViewController.swift in Sources */,
 				A97C160129D22EE7008F014B /* MediaCollectionViewCell.swift in Sources */,
 				A97C15FF29D1EF37008F014B /* ApiService.swift in Sources */,
 				A97C15F329D1E48C008F014B /* MyListViewController.swift in Sources */,
