@@ -31,7 +31,6 @@ class DetailedViewController: UIViewController {
     // title
     private let movieTitle: UILabel = {
         let title = UILabel()
-        title.frame = CGRect(x: title.bounds.origin.x, y: title.bounds.origin.y, width: 155, height: 32)
         title.textAlignment = .justified
         title.text = "title".capitalized
         title.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
@@ -59,11 +58,11 @@ class DetailedViewController: UIViewController {
     }()
     
     //overview
-    private let overview: UILabel = {
-        let overview = UILabel()
+    private let overview: UITextField = {
+        let overview = UITextField()
         overview.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.regular)
-        overview.numberOfLines = 0
-        overview.sizeToFit()
+        overview.isUserInteractionEnabled = false
+        overview.contentVerticalAlignment = .top
         return overview
     }()
     
@@ -76,10 +75,12 @@ class DetailedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureConstraints()
+        underLayer.frame = CGRect(x: view.bounds.origin.x + 30, y: view.bounds.origin.y + 100, width: view.frame.width - 60, height: view.frame.height - 60)
         view.backgroundColor = .systemBackground
         view.addSubview(underLayer)
         underLayer.addSubview(posterImageView)
+        
+        movieTitle.frame = CGRect(x: movieTitle.bounds.origin.x, y: movieTitle.bounds.origin.y, width: 155, height: 32)
         year.frame = CGRect(x: year.bounds.origin.x, y: movieTitle.font.pointSize + 2, width: 155, height: 32)
         
         mediaLabels.frame = CGRect(x: posterImageView.bounds.origin.x + posterImageView.frame.width + 12, y: posterImageView.bounds.origin.y + 15 , width: 155, height: 100)
@@ -89,23 +90,12 @@ class DetailedViewController: UIViewController {
         ratings.frame = CGRect(x: ratings.bounds.origin.x, y: movieTitle.frame.height + year.frame.height + 6, width: 155, height: 32)
         mediaLabels.addSubview(ratings)
         overview.frame = CGRect(x: Int(overview.bounds.origin.x), y: Int(posterImageView.frame.height) + 15, width: Int(view.frame.width) - 60, height: 300)
-        overview.backgroundColor = .systemRed
         underLayer.addSubview(overview)
         
-        
 
-        
-        
         // Do any additional setup after loading the view.
     }
     
-    //configure underlayer constraints
-    func configureConstraints(){
-        underLayer.frame = CGRect(x: view.bounds.origin.x + 30, y: view.bounds.origin.y + 100, width: view.frame.width - 60, height: view.frame.height - 60)
-        
-        underLayer.topAnchor.constraint(equalTo: view.topAnchor)
-        underLayer.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-    }
     
     // set the poster in the cache
     public func configure(with movie: Media) {
@@ -116,12 +106,16 @@ class DetailedViewController: UIViewController {
             
         }
         ratings.text = setRatings(vote: movie.vote_average)
-        overview.text = movie.overview
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.05
+        overview.attributedText = NSMutableAttributedString(string: movie.overview ?? "", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+ 
         if let poster = movie.poster_path {
             guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(poster)") else {return}
             posterImageView.sd_setImage(with: url, completed: nil)
         }
     }
+    
     
     // set ratings
     func setRatings(vote: Double) -> String{
