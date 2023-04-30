@@ -14,19 +14,13 @@ class MoviesSingleton: ObservableObject {
     }
     
     func didTapHeart(movie: Media){
-            if !MoviesSingleton.sharedInstance.movies.contains(where: {$0.id == movie.id}) {
-                movies.append(movie)
-                print("saved")
-                printMovies()
-                print(movies.count)
-            }else{
-                if let index = MoviesSingleton.sharedInstance.movies.firstIndex(where: {$0.id == movie.id}){
-                    movies.remove(at: index)
-                    print("unsaved")
-                    printMovies()
-                    print(movies.count)
-                }
+        if !MoviesSingleton.sharedInstance.movies.contains(where: {$0.id == movie.id}) {
+            movies.append(movie)
+        }else{
+            if let index = MoviesSingleton.sharedInstance.movies.firstIndex(where: {$0.id == movie.id}){
+                movies.remove(at: index)
             }
+        }
     }
     
     func remove(movie: Media){
