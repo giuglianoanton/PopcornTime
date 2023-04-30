@@ -37,6 +37,7 @@ class CollectionViewTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         contentView.backgroundColor = .systemIndigo
         contentView.addSubview(collectionView)
         
@@ -58,6 +59,11 @@ class CollectionViewTableViewCell: UITableViewCell {
         }
         
 //        collectionView.showsHorizontalScrollIndicator = false
+    }
+    
+    // make sure that the heart in the card is fill if tapped on heart from detailed view
+    override func didMoveToWindow() {
+        collectionView.reloadData()
     }
     
     
