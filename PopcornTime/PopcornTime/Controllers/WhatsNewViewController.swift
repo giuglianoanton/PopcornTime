@@ -58,6 +58,7 @@ class WhatsNewViewController: UIViewController {
         searchController.view.backgroundColor = .systemBackground
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        
     }
     
     /*
@@ -145,6 +146,7 @@ extension WhatsNewViewController: UISearchResultsUpdating{
               let resultsController = searchController.searchResultsController as? SearchResultViewController else {
             return
         }
+        resultsController.delegate = self
         ApiCaller.shared.getRequest(query: query, searchKey: searchingKeys[5]){ x in
             let result = x
             DispatchQueue.main.async {
@@ -178,5 +180,22 @@ extension WhatsNewViewController: CollectionViewTableViewCellDelegate{
             }
             
 //        }
+    }
+}
+
+extension WhatsNewViewController: SearchResultViewControllerDelegate{
+    func SearchResultViewControllerDidTapCell(_ cell: SearchResultViewController, movieSingleton: DetailMovieSingleton) {
+        let vc = DetailedViewController()
+        if let movie = DetailMovieSingleton.sharedInstance.movie{
+            vc.configure(with: movie)
+            navigationController?.pushViewController(vc, animated: true)
+            
+            //make the heart in the detailed view fill if it's been tapped
+            if MoviesSingleton.sharedInstance.movies.contains(where: {$0.id == movie.id}){
+                vc.heartButton.isSelected = true
+            } else{
+                vc.heartButton.isSelected = false
+            }
+        }
     }
 }

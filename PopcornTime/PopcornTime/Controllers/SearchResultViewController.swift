@@ -72,8 +72,6 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         collectionView.deselectItem(at: indexPath, animated: true)
         // save the selected movie
         DetailMovieSingleton.sharedInstance.didSelect(movie: moviesResults[indexPath.row])
-        print(moviesResults[indexPath.row].id)
-        print(DetailMovieSingleton.sharedInstance.movie?.id)
         // delegate to that cell selected
         delegate?.SearchResultViewControllerDidTapCell(self, movieSingleton: DetailMovieSingleton.sharedInstance)
     }
