@@ -122,7 +122,7 @@ class DetailedViewController: UIViewController {
     
     // set the poster in the cache
     public func configure(with movie: Media) {
-        var paragraphStyle = NSMutableParagraphStyle()
+        let paragraphStyle = NSMutableParagraphStyle()
 
         movieTitle.attributedText = NSMutableAttributedString(string: movie.title ?? "", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         
@@ -144,9 +144,9 @@ class DetailedViewController: UIViewController {
     
     // set ratings
     func setRatings(vote: Double) -> String{
-        var rounded = (vote / 2).rounded(.toNearestOrEven)
+        let rounded = (vote / 2).rounded(.toNearestOrEven)
         var ratings = ""
-        for x in 1...Int(rounded)  {
+        for _ in 1...Int(rounded)  {
             ratings += "★"
         }
         return ratings
