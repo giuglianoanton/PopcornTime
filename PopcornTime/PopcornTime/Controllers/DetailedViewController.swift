@@ -93,6 +93,7 @@ class DetailedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavBar()
         underLayer.frame = CGRect(x: view.bounds.origin.x + 30, y: view.bounds.origin.y + 150, width: view.frame.width - 60, height: view.frame.height - 60)
         view.backgroundColor = .systemBackground
         view.addSubview(underLayer)
@@ -119,6 +120,11 @@ class DetailedViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    private func configureNavBar(){
+        // navigation configuration
+        self.title = DetailMovieSingleton.sharedInstance.movie?.title
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
     
     // set the poster in the cache
     public func configure(with movie: Media) {
