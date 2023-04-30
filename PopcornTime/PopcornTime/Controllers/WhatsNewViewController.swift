@@ -36,6 +36,7 @@ class WhatsNewViewController: UIViewController {
         super.viewDidLayoutSubviews()
         table.frame = view.bounds
         table.backgroundColor = .none
+
     }
     
     private func configureNavBar(){
@@ -161,12 +162,14 @@ extension WhatsNewViewController: UISearchResultsUpdating{
 
 extension WhatsNewViewController: CollectionViewTableViewCellDelegate{
     func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, movieSingleton: DetailMovieSingleton) {
-        DispatchQueue.main.async {
-            [weak self] in
+//        DispatchQueue.main.async {
+//            [weak self] in
             let vc = DetailedViewController()
             if let movie = DetailMovieSingleton.sharedInstance.movie{
                 vc.configure(with: movie)
-                self?.navigationController?.pushViewController(vc, animated: true)
+                navigationController?.pushViewController(vc, animated: true)
+                
+                //make the heart in the detailed view fill if it's been tapped
                 if MoviesSingleton.sharedInstance.movies.contains(where: {$0.id == movie.id}){
                     vc.heartButton.isSelected = true
                 } else{
@@ -174,6 +177,6 @@ extension WhatsNewViewController: CollectionViewTableViewCellDelegate{
                 }
             }
             
-        }
+//        }
     }
 }
