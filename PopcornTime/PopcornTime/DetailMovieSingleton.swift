@@ -16,6 +16,5 @@ class DetailMovieSingleton: ObservableObject {
     
     func didSelect(movie: Media){
         DetailMovieSingleton.sharedInstance.movie = movie
-        print(movie.original_title)
     }
 }
