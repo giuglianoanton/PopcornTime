@@ -16,7 +16,6 @@ struct MyListView: View {
                     .swipeActions(allowsFullSwipe: true) {
                         Button(role: .destructive) {
                             movies.remove(movie: movie)
-                            print("Delete")
                         } label: {
                             Label("Delete", systemImage: "trash.fill")
                         }
