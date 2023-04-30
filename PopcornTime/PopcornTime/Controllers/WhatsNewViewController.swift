@@ -165,39 +165,11 @@ extension WhatsNewViewController: UISearchResultsUpdating{
 extension WhatsNewViewController: CollectionViewTableViewCellDelegate{
     func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, movieSingleton: DetailMovieSingleton) {
         pushToDetailedView(navigationController: navigationController!)
-////        DispatchQueue.main.async {
-////            [weak self] in
-//            let vc = DetailedViewController()
-//            if let movie = DetailMovieSingleton.sharedInstance.movie{
-//                vc.configure(with: movie)
-//                navigationController?.pushViewController(vc, animated: true)
-//                
-//                //make the heart in the detailed view fill if it's been tapped
-//                if MoviesSingleton.sharedInstance.movies.contains(where: {$0.id == movie.id}){
-//                    vc.heartButton.isSelected = true
-//                } else{
-//                    vc.heartButton.isSelected = false
-//                }
-//            }
-//            
-////        }
     }
 }
 
 extension WhatsNewViewController: SearchResultViewControllerDelegate{
     func SearchResultViewControllerDidTapCell(_ cell: SearchResultViewController, movieSingleton: DetailMovieSingleton) {
         pushToDetailedView(navigationController: navigationController!)
-//        let vc = DetailedViewController()
-//        if let movie = DetailMovieSingleton.sharedInstance.movie{
-//            vc.configure(with: movie)
-//            navigationController?.pushViewController(vc, animated: true)
-//
-//            //make the heart in the detailed view fill if it's been tapped
-//            if MoviesSingleton.sharedInstance.movies.contains(where: {$0.id == movie.id}){
-//                vc.heartButton.isSelected = true
-//            } else{
-//                vc.heartButton.isSelected = false
-//            }
-//        }
     }
 }
