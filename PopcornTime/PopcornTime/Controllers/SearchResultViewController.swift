@@ -7,8 +7,15 @@
 
 import UIKit
 
+// create the protocol
+protocol SearchResultViewControllerDelegate: AnyObject {
+    func SearchResultViewControllerDidTapCell(_ cell: SearchResultViewController, movieSingleton: DetailMovieSingleton)
+}
 class SearchResultViewController: UIViewController {
 
+    weak var delegate: SearchResultViewControllerDelegate?
+    
+    
     public var moviesResults = [Media]()
     public let searchResultsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -29,6 +36,9 @@ class SearchResultViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         searchResultsCollectionView.frame = view.bounds
+        DispatchQueue.main.async {[weak self] in
+            self?.searchResultsCollectionView.reloadData()
+        }
     }
 
     /*
@@ -55,5 +65,16 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
        
         cell.configureLabels(with: moviesResults[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // once a cell is selected, it has to be deselected too
+        collectionView.deselectItem(at: indexPath, animated: true)
+        // save the selected movie
+        DetailMovieSingleton.sharedInstance.didSelect(movie: moviesResults[indexPath.row])
+        print(moviesResults[indexPath.row].id)
+        print(DetailMovieSingleton.sharedInstance.movie?.id)
+        // delegate to that cell selected
+        delegate?.SearchResultViewControllerDidTapCell(self, movieSingleton: DetailMovieSingleton.sharedInstance)
     }
 }
