@@ -79,6 +79,7 @@ extension MyListViewController: UISearchResultsUpdating{
               let resultsController = searchController.searchResultsController as? SearchResultViewController else {
             return
         }
+        resultsController.delegate = self
         for movie in MoviesSingleton.sharedInstance.movies{
             if let title = movie.title{
                 if title.contains(query) {
@@ -91,5 +92,10 @@ extension MyListViewController: UISearchResultsUpdating{
                 }
             }
         }
+    }
+}
+extension MyListViewController: SearchResultViewControllerDelegate{
+    func SearchResultViewControllerDidTapCell(_ cell: SearchResultViewController, movieSingleton: DetailMovieSingleton) {
+        pushToDetailedView(navigationController: navigationController!)
     }
 }
